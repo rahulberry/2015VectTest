@@ -12,11 +12,15 @@ struct prod{
 	int quant;
 };
 
-void merge_items(vector<prod> warehouse1, vector<prod>& warehouse2);
 
 int main(){
+
+	void merge_items(vector<prod> warehouse1, vector<prod> warehouse2, vector<prod>& total);
+
 	vector<prod> warehouse1;
 	vector<prod> warehouse2;
+	vector<prod> total;
+
 
 	ifstream infile, infile2;
 
@@ -57,20 +61,32 @@ int main(){
 		 		 }
 
 	cout << "The total contents of both warehouses are:" << endl;
-		merge_items(warehouse1, warehouse2);
-		for(int i=0; i<= warehouse2.size()-1; i++){
-			cout << warehouse1[i].name << warehouse1[i].quant;
+		merge_items(warehouse1, warehouse2, total);
+		for(int i=0; i<= total.size()-1; i++){
+			cout << total[i].name << "  " << total[i].quant << endl;;
 		}
+
 }
 
-void merge_items(vector<prod>& warehouse1, vector<prod> warehouse2){
-	prod product2;
-	for(int i = 0; i <= warehouse1.size()-1; i++){
-		for(int j = 0; j <= warehouse2.size()-1; j++){
-			if(warehouse1[i].name == warehouse2[j].name){
-				warehouse1[i].quant = warehouse1[i].quant + warehouse2[j].quant;
-			}
+void merge_items(vector<prod> warehouse1, vector<prod> warehouse2, vector<prod>& total){
+	unsigned int i = 0;
+	unsigned int j = 0;
+	unsigned int q = 0;
+	do{
+		if(warehouse1[i].name < warehouse2[j].name){
+			total.push_back(warehouse1[i]);
+			i++;
 		}
-	}
+		else if(warehouse1[i].name > warehouse2[j].name){
+			total.push_back(warehouse2[j]);
+			j++;
+		}
+		else if(warehouse1[i].name == warehouse2[j].name){
+			warehouse1[i].quant = warehouse1[i].quant + warehouse2[j].quant;
+			total.push_back(warehouse1[i]);
+			i++;
+			j++;
+		}
+		q++;
+	}while((warehouse1.size() + 1 > i) && (warehouse2.size() + 1 > j));
 }
-
