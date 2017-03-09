@@ -69,8 +69,45 @@ int main(){
 	 		 	 for(int q = 0; q < output.size(); q++){
 	 		 		 	 outfile << output[q] << " ";
 	 		 	 }
-
-
 	 		 	 outfile.close();
 	}
 
+/*string functions
+.find('a')
+
+string word = banana;
+word.fina('a'); will return 1;
+
+Counter:
+string fruit = "banana";
+int length = fruit.length();
+int count = 0;
+int index = 0;
+	while (index < length) {
+		if (fruit[index] == ÕaÕ) {
+				count = count + 1;
+		}
+			index = index + 1;
+		}
+			cout << count << endl;
+
+#include ctype.h
+to use functions toupper tolower to make the letters upper/lower case;
+
+function isalpha checks whether the character is a letter;
+isdigit identifies numbers
+isspace identifies white space
+isupper islower identifies lower and upper case;
+
+vector stuff:
+vector<int> count (4);
+adding the brackets at the end specifies the vector size
+
+Under cstdlib there is a function that generates pseudorandom numbers between 0 and RAND_MAX(very large number)
+call using
+x = random()
+
+to create a bound
+int x = random ();
+int y = x % upperBound;
+where upperbound is the chosen limit - 1;
